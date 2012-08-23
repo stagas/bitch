@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/stagas/bitch.png)](http://travis-ci.org/stagas/bitch)
 # bitch
 
 Fork for humans
