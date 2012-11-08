@@ -9,7 +9,7 @@ var serializeError = function (err) {
 }
 
 process.once('message', function (m) {
-  var fn = eval('(' + m.fn + ')')()
+  var fn = eval('(' + m.fn + ')').apply(this, m.args)
   process.on('message', function (m) {
     var id = m.id
     m.args.push(function () {

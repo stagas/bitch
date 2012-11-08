@@ -12,6 +12,7 @@ var errors = {
 }
 
 module.exports = function (fn) {
+  var args = slice.call(arguments, 1)
   var child = fork(__dirname + '/worker.js')
   var callbacks = {}
   child.on('message', function (m) {
@@ -27,7 +28,7 @@ module.exports = function (fn) {
       delete callbacks[m.id]
     }
   })
-  child.send({ fn: fn.toString() })
+  child.send({ fn: fn.toString(), args: args })
   var proxy = function () {
     var id = (Math.random() * 100000000 | 0).toString(36)
     var args = slice.call(arguments)

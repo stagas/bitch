@@ -11,7 +11,7 @@ Fork for humans
 ```javascript
 var bitch = require('bitch')
 
-var fn = bitch(function () { // init block
+var fn = bitch(function (x, y) { // init block
   var secret = 'prepare your bitch'
   var crypto = require('crypto')
 
@@ -19,7 +19,7 @@ var fn = bitch(function () { // init block
   return function (a, b, c, callback) {
     callback(null, 'whatever')
   }
-})
+}, 150, 250) // pass init args
 
 fn(1, 'foo', 3, function (err, result) {
   console.log(result) // 'whatever'

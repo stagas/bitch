@@ -1,7 +1,7 @@
 var bitch = require('./bitch')
 var assert = require('assert')
 
-var tests = 3
+var tests = 5
 
 function done () {
   console.log('tests pass')
@@ -53,5 +53,31 @@ three('yo', function (err, str) {
   assert.equal(null, err)
   assert.equal('yo', str)
   three.die()
+  --tests || done()
+})
+
+var four = bitch(function (a) {
+  return function (str, cb) {
+    cb(null, str + ' ' + a)
+  }
+}, 'bitch')
+
+four('yo', function (err, str) {
+  assert.equal(null, err)
+  assert.equal('yo bitch', str)
+  four.die()
+  --tests || done()
+})
+
+var five = bitch(function (a, b) {
+  return function (str, cb) {
+    cb(null, str + ' ' + a + ' ' + b.a )
+  }
+}, 'bitch', { a: 'foo' })
+
+five('yo', function (err, str) {
+  assert.equal(null, err)
+  assert.equal('yo bitch foo', str)
+  five.die()
   --tests || done()
 })
